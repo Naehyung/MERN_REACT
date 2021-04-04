@@ -14,6 +14,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Icon from "./Icon";
 import useStyles from "./styles";
 import Input from "./Input";
+import { signin, signup } from '../../actions/auth'
 
 const initialState = {
   firstName: "",
@@ -44,12 +45,13 @@ const Auth = () => {
   };
 
   const handleChange = (e) => {
+    
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
-    handleShowPassword(false);
+    setShowPassword(false);
   };
   const googleSuccess = async (res) => {
     const result = res?.profileObj;
@@ -95,7 +97,7 @@ const Auth = () => {
               </>
             )}
             <Input
-              name="emal"
+              name="email"
               label="Email Address"
               handleChange={handleChange}
               type="email"
